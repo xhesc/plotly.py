@@ -18,11 +18,27 @@ var PATH_TEST_BUNDLE = path.join(PATH_ROOT, 'test.tmp.js');
 var URL = 'http://localhost:' + PORT + '/fixtures/test.tmp.html';
 var EXIT_CODE = 0;
 
-// main
-stubIndex()
-    .then(bundleTests)
-    .then(startServer)
-    .then(launch)
+
+main();
+
+function main() {
+    scanDependencies();
+
+    stubIndex()
+        .then(bundleTests)
+        .then(startServer)
+        .then(launch);
+}
+
+function scanDependencies() {
+    var reqFiles = [PATH_INDEX, PATH_TEST_FILE];
+
+    reqFiles.forEach(function(filePath) {
+        if(!doesFileExist(filePath)) {
+            throw new Error(filePath + ' does not exist');
+        }
+    });
+}
 
 function stubIndex() {
     return new Promise(function(resolve, reject) {
@@ -85,6 +101,17 @@ function handle(req, res) {
 
 function launch() {
     chrome(URL);
+}
+
+function doesFileExist(filePath) {
+    try {
+        if(fs.statSync(filePath).isFile()) return true;
+    }
+    catch(e) {
+        return false;
+    }
+
+    return false;
 }
 
 function removeBuildFiles() {
