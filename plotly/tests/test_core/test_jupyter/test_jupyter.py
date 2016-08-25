@@ -29,8 +29,10 @@ class Common(TestCase):
 
         if 'PYENV_VERSION' in environ:
             kernel_name = environ['PYENV_VERSION']
+            print(kernel_name)
             self.ep = ExecutePreprocessor(timeout=600, kernel_name=kernel_name)
         else:
+            print('no kernel found in environment')
             self.ep = ExecutePreprocessor(timeout=600)
 
         self.html_exporter = HTMLExporter()
