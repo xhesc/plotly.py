@@ -2,11 +2,12 @@ var http = require('http');
 var url = require('url');
 var fs = require('fs');
 var path = require('path');
+
 var ecstatic = require('ecstatic');
 var browserify = require('browserify');
 var cheerio = require('cheerio');
-var chrome = require('chrome-launch');
 var tapParser = require('tap-parser');
+var chrome = require('chrome-launch');
 
 var PORT = 8080;
 var PATH_ROOT = path.join(__dirname, '..');
@@ -22,7 +23,7 @@ var EXIT_CODE = 0;
 main();
 
 function main() {
-    scanDependencies();
+    scanInput();
 
     stubIndex()
         .then(bundleTests)
@@ -30,7 +31,7 @@ function main() {
         .then(launch);
 }
 
-function scanDependencies() {
+function scanInput() {
     var reqFiles = [PATH_INDEX, PATH_TEST_FILE];
 
     reqFiles.forEach(function(filePath) {
@@ -103,6 +104,11 @@ function launch() {
     chrome(URL);
 }
 
+function removeBuildFiles() {
+    fs.unlinkSync(PATH_INDEX_STUB);
+    fs.unlinkSync(PATH_TEST_BUNDLE);
+}
+
 function doesFileExist(filePath) {
     try {
         if(fs.statSync(filePath).isFile()) return true;
@@ -112,9 +118,4 @@ function doesFileExist(filePath) {
     }
 
     return false;
-}
-
-function removeBuildFiles() {
-    fs.unlinkSync(PATH_INDEX_STUB);
-    fs.unlinkSync(PATH_TEST_BUNDLE);
 }
