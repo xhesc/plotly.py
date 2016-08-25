@@ -11,14 +11,18 @@ var chrome = require('chrome-launch');
 
 var PORT = 8080;
 var PATH_ROOT = path.join(__dirname, '..');
-var PATH_FIXTURES = path.join(PATH_ROOT, 'fixtures');
-var PATH_INDEX = path.join(PATH_FIXTURES, 'test.html');
-var PATH_INDEX_STUB = path.join(PATH_FIXTURES, 'test.tmp.html');
-var PATH_TEST_FILE = path.join(PATH_ROOT, 'test.js');
+var PATH_INDEX_STUB = path.join(PATH_ROOT, 'index.tmp.html');
 var PATH_TEST_BUNDLE = path.join(PATH_ROOT, 'test.tmp.js');
-var URL = 'http://localhost:' + PORT + '/fixtures/test.tmp.html';
+
+var URL = 'http://localhost:' + PORT + '/index.tmp.html';
 var EXIT_CODE = 0;
 
+if(process.argv.length !== 4) {
+    throw new Error('must provide path to html and js files');
+}
+
+var PATH_INDEX = process.argv[2];
+var PATH_TEST_FILE = process.argv[3];
 
 main();
 
