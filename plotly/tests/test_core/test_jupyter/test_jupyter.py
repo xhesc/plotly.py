@@ -58,3 +58,8 @@ class Common(TestCase):
 class PlotlyJupyterConnectedFalseTestCase(Common):
     __test__ = True
     name = 'connected_false'
+
+
+class PlotlyJupyterConnectedTrueTestCase(Common):
+    __test__ = True
+    name = 'connected_true'
