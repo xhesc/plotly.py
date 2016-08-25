@@ -2,8 +2,6 @@
 test__jupyter
 
 """
-from __future__ import absolute_import
-
 import nbformat
 from nbconvert import HTMLExporter
 from nbconvert.preprocessors import ExecutePreprocessor
@@ -11,8 +9,6 @@ from nbconvert.preprocessors import ExecutePreprocessor
 from unittest import TestCase
 from os import path
 import subprocess
-
-import plotly
 
 PATH_ROOT = path.dirname(__file__)
 PATH_FIXTURES = path.join(PATH_ROOT, 'fixtures')
