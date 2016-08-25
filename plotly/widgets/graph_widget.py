@@ -7,10 +7,13 @@ import uuid
 from collections import deque
 from pkg_resources import resource_string
 
+try:
+    from ipywidgets import widgets
+    from traitlets import Unicode
+except ImportError:
+    from IPython.html import widgets
+    from IPython.utils.traitlets import Unicode
 
-# TODO: protected imports?
-# from IPython.html import widgets
-# from IPython.utils.traitlets import Unicode
 from IPython.display import Javascript, display
 
 import plotly.plotly.plotly as py
