@@ -39,4 +39,8 @@ for version in ${PLOTLY_PYTHON_VERSIONS[@]}; do
     pip install -r ${PLOTLY_OPTIONAL_REQUIREMENTS_FILE} ||
         error_exit "${SIG} ${LINENO}: can't install optional for Python ${version}."
 
+    # add python version to available jupyter kernel list
+    python -m ipykernel install --user --name ${version}
+    echo "${SIG} jupyter kernelspec list"
+    jupyter kernelspec list
 done

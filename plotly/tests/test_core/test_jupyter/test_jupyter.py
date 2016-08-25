@@ -7,13 +7,14 @@ from nbconvert import HTMLExporter
 from nbconvert.preprocessors import ExecutePreprocessor
 
 from unittest import TestCase
-from os import path
+from os import path, environ
 import subprocess
 
 PATH_ROOT = path.dirname(__file__)
 PATH_FIXTURES = path.join(PATH_ROOT, 'fixtures')
 PATH_TEST_NB = path.join(PATH_FIXTURES, 'test.ipynb')
 PATH_TEST_HTML = path.join(PATH_FIXTURES, 'test.html')
+PYENV_VERSION = environ['PYENV_VERSION']
 
 
 class PlotlyJupyterTestCase(TestCase):
@@ -21,7 +22,11 @@ class PlotlyJupyterTestCase(TestCase):
         with open(PATH_TEST_NB, 'r') as f:
             self.nb = nbformat.read(f, as_version=4)
 
-        self.ep = ExecutePreprocessor(timeout=600)
+        if PYENV_VERSION:
+            self.ep = ExecutePreprocessor(timeout=600, kernel_name=PYENV_VERSION)
+        else:
+            self.ep = ExecutePreprocessor(timeout=600)
+
         self.html_exporter = HTMLExporter()
 
         self.ep.preprocess(self.nb, {'metadata': {'path': '.'}})
