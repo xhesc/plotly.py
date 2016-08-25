@@ -9,8 +9,8 @@ from pkg_resources import resource_string
 
 
 # TODO: protected imports?
-from IPython.html import widgets
-from IPython.utils.traitlets import Unicode
+# from IPython.html import widgets
+# from IPython.utils.traitlets import Unicode
 from IPython.display import Javascript, display
 
 import plotly.plotly.plotly as py
