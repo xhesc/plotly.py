@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.12.11] - 2016-09-01
+### Added
+Support for rendering plots in [nteract](https://nteract.io/)!
+See [https://github.com/nteract/nteract/pull/662](https://github.com/nteract/nteract/pull/662)
+for the associated PR in nteract.
+
 ## [1.12.10] - 2016-08-26
 ### Fixed
 - the colorbar in `.create_trisurf` now displays properly in `offline mode`.
