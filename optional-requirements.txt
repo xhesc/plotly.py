@@ -14,6 +14,7 @@ numpy
 ## testing dependencies ##
 nose
 coverage
+ipykernel
 
 ## ipython ##
 ipython

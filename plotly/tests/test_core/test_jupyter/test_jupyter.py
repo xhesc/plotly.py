@@ -5,6 +5,7 @@ test__jupyter
 import nbformat
 from nbconvert import HTMLExporter
 from nbconvert.preprocessors import ExecutePreprocessor
+from ipykernel import kernelspec
 
 from unittest import TestCase
 from os import path, environ
@@ -24,16 +25,13 @@ class Common(TestCase):
         self.path_test_html = path.join(PATH_FIXTURES, self.name + '.html')
         self.path_test_js = path.join(PATH_JS_TESTS, self.name + '.js')
 
+        self.kernel_name = kernelspec.KERNEL_NAME
+
         with open(self.path_test_nb, 'r') as f:
             self.nb = nbformat.read(f, as_version=4)
 
-        if 'PYENV_VERSION' in environ:
-            kernel_name = environ['PYENV_VERSION']
-            print(kernel_name)
-            self.ep = ExecutePreprocessor(timeout=600, kernel_name=kernel_name)
-        else:
-            print('no kernel found in environment')
-            self.ep = ExecutePreprocessor(timeout=600)
+        self.ep = ExecutePreprocessor(timeout=600,
+                                      kernel_name=self.kernel_name)
 
         self.html_exporter = HTMLExporter()
 
