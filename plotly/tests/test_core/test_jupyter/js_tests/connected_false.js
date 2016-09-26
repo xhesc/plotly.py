@@ -14,7 +14,7 @@ test('should have one plotly.js graph', function(t) {
     t.plan(1);
 
     var nodes = document.querySelectorAll('.js-plotly-plot');
-    t.equal(nodes.length, 1);
+    t.equal(nodes.length, 2);
 });
 
 test('should inject raw plotly.js code into DOM', function(t) {
