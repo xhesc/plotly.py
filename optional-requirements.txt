@@ -27,4 +27,3 @@ scipy
 
 ## jupyter ##
 jupyter
-ipykernel
