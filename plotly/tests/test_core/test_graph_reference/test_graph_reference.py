@@ -60,6 +60,7 @@ class TestGraphReferenceCaching(PlotlyTestCase):
         self.assertEqual(graph_reference, default_graph_reference)
 
     @attr('slow')
+    @skip('skipping')
     def test_default_schema_is_up_to_date(self):
         api_domain = files.FILE_CONTENT[files.CONFIG_FILE]['plotly_api_domain']
         graph_reference_url = '{}{}?sha1'.format(api_domain,
