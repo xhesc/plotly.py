@@ -121,6 +121,10 @@ def request(method, url, **kwargs):
     :return: (requests.Response) The response directly from requests.
 
     """
+
+    # Manually disable this functionality
+    raise RuntimeError("Please use module plotly.offline")
+
     kwargs['headers'] = dict(kwargs.get('headers', {}), **get_headers())
 
     # Change boolean params to lowercase strings. E.g., `True` --> `'true'`.

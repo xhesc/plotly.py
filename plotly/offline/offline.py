@@ -204,6 +204,10 @@ def _plot_html(figure_or_data, config, validate, default_width,
         'topojsonURL'
     )
 
+    # manually enforce a few options
+    config['showLink'] = False
+    config['displaylogo'] = False 
+
     config_clean = dict((k, config[k]) for k in configkeys if k in config)
     jconfig = _json.dumps(config_clean)
 
@@ -269,7 +273,7 @@ def _plot_html(figure_or_data, config, validate, default_width,
     return plotly_html_div, plotdivid, width, height
 
 
-def iplot(figure_or_data, show_link=True, link_text='Export to plot.ly',
+def iplot(figure_or_data, show_link=False, link_text='Export to plot.ly',
           validate=True, image=None, filename='plot_image', image_width=800,
           image_height=600):
     """
@@ -354,7 +358,7 @@ def iplot(figure_or_data, show_link=True, link_text='Export to plot.ly',
         ipython_display.display(ipython_display.HTML(script))
 
 
-def plot(figure_or_data, show_link=True, link_text='Export to plot.ly',
+def plot(figure_or_data, show_link=False, link_text='Export to plot.ly',
          validate=True, output_type='file', include_plotlyjs=True,
          filename='temp-plot.html', auto_open=True, image=None,
          image_filename='plot_image', image_width=800, image_height=600):

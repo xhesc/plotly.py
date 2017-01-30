@@ -19,6 +19,10 @@ def clientresp(data, **kwargs):
     :param (list) data: The data array from a figure.
 
     """
+
+    # Manually disable this functionality
+    raise RuntimeError("Please use module plotly.offline")
+
     creds = config.get_credentials()
     cfg = config.get_config()
 
