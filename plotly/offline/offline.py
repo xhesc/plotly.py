@@ -206,7 +206,8 @@ def _plot_html(figure_or_data, config, validate, default_width,
 
     # manually enforce a few options
     config['showLink'] = False
-    config['displaylogo'] = False 
+    config['displaylogo'] = False
+    config['modeBarButtonsToRemove'] = ['sendDataToCloud']
 
     config_clean = dict((k, config[k]) for k in configkeys if k in config)
     jconfig = _json.dumps(config_clean)
